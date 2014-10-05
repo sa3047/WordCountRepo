@@ -3,7 +3,7 @@ records = LOAD '/user/cloudera/input.txt';
 
 //2.Tokenize the file by line
 TokenizedFile = foreach records generate flatten(TOKENIZE((chararray)$0)) as word; 
-
+search_words = foreach search_words_records generate flatten(TOKENIZE((chararray)$0)) as search_words;
 
 filtered_rec  = FILTER TokenizedFile BY (word matches '.*Dec.*' OR word matches '.*(Hackathon|hackathon).*' OR word matches '.*Chicago.*' OR word matches '.*java.*');          
 //3. Filter the recrods by specified word
